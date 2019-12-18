@@ -8,7 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 import uuid
 import boto3
 
-# from .models import Cat, Toy, Photo
+from .models import Resolution
 # from .forms import FeedingForm
 
 # Create your views here.
@@ -30,3 +30,7 @@ def signup(request):
   form = UserCreationForm()
   context = { 'form': form, 'error_message': error_message }
   return render(request, 'registration/signup.html', context)
+
+class ResolutionsIndex(ListView):
+  model = Resolution
+  fields = '__all__'
