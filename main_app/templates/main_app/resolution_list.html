@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1> Resolution List</h1>
+
+{% for resolution in resolution_list %}
+  <a href=""></a>
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ resolution.goal }}</span>
+
+        </div>
+    </div>
+  </a>
+{% endfor %}
+
+{% endblock %}

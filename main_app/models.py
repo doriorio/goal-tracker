@@ -13,4 +13,3 @@ class Resolution(models.Model):
 
     def __str__(self):
         return self.goal
-        
