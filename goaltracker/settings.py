@@ -121,8 +121,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Add this variable to specify where successful logins should redirect to
-# LOGIN_REDIRECT_URL = '/resolutions/'
-LOGIN_REDIRECT_URL = '/index/'
+LOGIN_REDIRECT_URL = '/resolutions/'
 
 # Add this variable to specify where logging out redirects to
 LOGOUT_REDIRECT_URL = '/'
