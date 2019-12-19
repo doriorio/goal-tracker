@@ -13,14 +13,18 @@
 </head>
 <body>
     <main class="background">
-      <div id="discoBallLight"></div>
-      <div id="discoBall">
-         <div id="discoBallMiddle"></div>
+      {% if user.is_authenticated %}
+      <div class='discoball dropping'>
+      {% else %}
+      <div class="discoball">
+      {% endif %}
+        <img src="{% static 'images/disco-ball.png' %}" alt="">
       </div>
+      
       <h1><img class="home-icon" src="{% static 'images/plant.svg' %}"/>Goals</h1>
-      <ul>
+      <ul id="home-buttons">
          {% if user.is_authenticated %}
-         <li><a href="{% url 'index' %}">Resolutions</a></li>
+         <li><a href="{% url 'index' %}" class="resolutions-link">Resolutions</a></li>
          <li><a href="{% url 'logout' %}">Sign Out</a></li>
          {% else %}
          <li><a href="{% url 'signup' %}">Sign Up</a></li>
@@ -28,5 +32,33 @@
          {% endif %}
       </ul>
     </main>
+    <script>
+      const buttonsEl = document.getElementById('home-buttons');
+      const ballEl = document.querySelector('.discoball');
+      buttonsEl.addEventListener('click', handleBallDrop);
+      function delay (URL) {
+         setTimeout( function() { window.location = URL }, 500 );
+      }
+      function handleBallDrop(event) {
+         event.preventDefault();
+         if (event.target.tagName !== 'A') {
+            return;
+         } else {
+            var link = event.target.getAttribute('href');
+            if (event.target.classList.contains('resolutions-link')) {
+               window.location = link;
+               return;
+            }
+            else if (ballEl.classList.contains('dropping')) {
+               ballEl.classList.remove('dropping');
+            } else {
+               ballEl.classList.add('dropping');
+            }
+            setTimeout(function(){
+                  window.location = link;
+            }, 600); 
+         }
+      }
+    </script>
 </body>
 </html>
