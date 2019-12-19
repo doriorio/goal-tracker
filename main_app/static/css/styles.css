@@ -97,46 +97,39 @@ nav > li {
    filter:alpha(opacity=70) !important; /* For IE8 and earlier */
    box-shadow: 0 0 0px #000000 !important;
 }
-.ball {
-   position: absolute;
-   z-index: 1;
-}
 
-@-webkit-keyframes hue {
+
+@keyframes hue {
    from {
-     -webkit-filter: hue-rotate(0deg);
+     filter: hue-rotate(0deg);
    }
    
    to {
-     -webkit-filter: hue-rotate(360deg);
+     filter: hue-rotate(360deg);
    }
  }
  .discoball {
-   -webkit-animation-timing-function: linear;
-   -webkit-animation-duration: 1s;
-   -webkit-animation-name: hue;
-   -webkit-animation-iteration-count: infinite;
-   -webkit-animation-direction: alternate;
-   
+   animation-timing-function: linear;
+   animation-duration: 1s;
+   animation-name: hue;
+   animation-iteration-count: infinite;
+   animation-direction: alternate;
    background: lightgrey;
    border-radius: 200px;
    /*border: 0px solid #fff;*/
    height: 200px;
    width: 200px;
    box-shadow: 0 3px 200px -3px #fff;
+   position: absolute;
+   z-index: 1;
+   top: 25px;
+   transition: transform 0.5s ease-in;
  }
  .discoball img {
    height: 200px;
    width: 200px;
  }
- .hanger {
-   background: #eee;
-   width: 1px;
-   border-left: 2px solid #fff;
-   border-right: 2px solid #fff;
-   height: 60px;
-   position: absolute;
-   top: 0;
-   left: 50%;
+ .discoball.dropping {
+    transform: translateY(100%)
  }
  
