@@ -31,6 +31,26 @@ def signup(request):
   context = { 'form': form, 'error_message': error_message }
   return render(request, 'registration/signup.html', context)
 
-class ResolutionsIndex(ListView):
+class ResolutionIndex(ListView):
   model = Resolution
   fields = '__all__'
+
+class ResolutionDetail(LoginRequiredMixin, DetailView):
+  model = Resolution
+
+
+class ResolutionCreate(LoginRequiredMixin, CreateView):
+   model = Resolution
+   fields = ['goal', 'reason', 'time_period', 'notes']
+   # We are trying to pass the user id into the form instance that was returned to us by the form html. For some reason, self.request has user in it. Super calls CreateView so we can use the default functions of the original CreateView model. form_valid checks if the form is valid. 
+   def form_valid(self, form):
+      form.instance.user = self.request.user
+      return super().form_valid(form)
+
+class ResolutionUpdate(LoginRequiredMixin, UpdateView):
+  model = Resolution
+  fields = ['goal', 'reason', 'time_period', 'notes']
+
+class ResolutionDelete(LoginRequiredMixin, DeleteView):
+  model = Resolution
+  success_url = '/resolutions/'

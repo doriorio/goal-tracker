@@ -1,5 +1,5 @@
 from django.contrib import admin
-# from .models import Cat, Feeding, Toy, Photo
+from .models import Resolution
 
 # Register your models here.
-# admin.site.register(Cat)
+admin.site.register(Resolution)
