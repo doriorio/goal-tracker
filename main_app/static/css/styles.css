@@ -2,7 +2,6 @@ nav > li {
     background-color: white;
 }
 
-
 .background {
    height: 100vh;
    width: 100vw;
@@ -16,14 +15,15 @@ nav > li {
    align-items: center;
 }
 
+
 .background > h1 {
    margin: 0;
    display: flex;
    justify-content: center;
    align-items: center;
-   /* margin-top: 200px;
-   margin-bottom: 150px; */
+   z-index: 2;
 }
+
 .home-icon {
    height: 1em;
    filter: saturate(3);
@@ -36,8 +36,8 @@ nav > li {
    flex-direction: column;
    justify-content: space-between;
    align-items: center;
-   /* margin-top: 70px; */
    height: 90px;
+   z-index: 2;
 }
 
 .background > ul > li {
@@ -70,3 +70,47 @@ nav > li {
    opacity: 1;
    transform: scale(1.1);
 }
+
+.ball {
+   position: absolute;
+   z-index: 1;
+}
+
+@-webkit-keyframes hue {
+   from {
+     -webkit-filter: hue-rotate(0deg);
+   }
+   
+   to {
+     -webkit-filter: hue-rotate(360deg);
+   }
+ }
+ .discoball {
+   -webkit-animation-timing-function: linear;
+   -webkit-animation-duration: 1s;
+   -webkit-animation-name: hue;
+   -webkit-animation-iteration-count: infinite;
+   -webkit-animation-direction: alternate;
+   
+   background: lightgrey;
+   border-radius: 200px;
+   /*border: 0px solid #fff;*/
+   height: 200px;
+   width: 200px;
+   box-shadow: 0 3px 200px -3px #fff;
+ }
+ .discoball img {
+   height: 200px;
+   width: 200px;
+ }
+ .hanger {
+   background: #eee;
+   width: 1px;
+   border-left: 2px solid #fff;
+   border-right: 2px solid #fff;
+   height: 60px;
+   position: absolute;
+   top: 0;
+   left: 50%;
+ }
+ 
