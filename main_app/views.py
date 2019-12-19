@@ -7,9 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 import uuid
 import boto3
-
 from .models import Resolution
-# from .forms import FeedingForm
 
 # Create your views here.
 def home(request):
@@ -37,7 +35,6 @@ class ResolutionIndex(LoginRequiredMixin, ListView):
 
 class ResolutionDetail(LoginRequiredMixin, DetailView):
   model = Resolution
-
 
 class ResolutionCreate(LoginRequiredMixin, CreateView):
    model = Resolution

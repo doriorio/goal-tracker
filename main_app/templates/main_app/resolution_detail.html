@@ -14,5 +14,29 @@
            <a href="{% url 'delete' resolution.id %}">Delete</a>
         </div>
     </div>
+    <div class="col s6">
+        <form action="" method="post">
+          {% csrf_token %}
+          <input type="submit" class="btn" value="Add Comment">
+        </form>
+        <br>
+        <table class="striped">
+          <thead>
+            <tr><th>User</th><th>Comment</th></tr>
+          </thead>
+          <tbody>
+            {% if resolution.comment.count %}  
+                {% for comment in resolution.comment.all %}
+                    <tr>
+                        <td>{{comment.user}}</td>
+                        <td>{{comment.text}}</td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <h5>No Comments Yet</h5>
+            {% endif %}    
+          </tbody>
+        </table>
+      </div>
 
 {% endblock %}
