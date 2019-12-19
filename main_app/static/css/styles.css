@@ -71,6 +71,10 @@ nav > li {
    transform: scale(1.1);
 }
 
+.background > ul > li > a:hover:active {
+   transform: scale(0.9);
+}
+
 .button-custom {
    justify-content: end;
    color: navy;
