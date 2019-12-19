@@ -71,6 +71,32 @@ nav > li {
    transform: scale(1.1);
 }
 
+.button-custom {
+   justify-content: end;
+   color: navy;
+   background-color: #B4CBD1;
+   opacity: 0.7;
+   border-style: solid;
+   border-width: 1px;
+   border-color: black;
+   border-radius: 99999px;
+   padding: 10px;
+   margin: 0;
+   transition: transform 0.3s ease, opacity 0.2s ease;
+}
+
+.button-custom:hover {
+   opacity: 1;
+   transform: scale(1.1);
+   text-decoration: none;
+}
+
+#goals-icon:hover {
+   background-color: rgb(54, 30, 103);
+   opacity:0.7 !important;
+   filter:alpha(opacity=70) !important; /* For IE8 and earlier */
+   box-shadow: 0 0 0px #000000 !important;
+}
 .ball {
    position: absolute;
    z-index: 1;
