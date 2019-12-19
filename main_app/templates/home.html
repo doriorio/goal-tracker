@@ -8,19 +8,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Goals</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
-    <main class="container">
+    <main class="container background">
       <h1>Goals</h1>
       <ul>
+         {% if user.is_authenticated %}
+         <li><a href="{% url 'index' %}">Resolutions</a></li>
+         <li><a href="{% url 'logout' %}">Sign Out</a></li>
+         {% else %}
          <li><a href="{% url 'signup' %}">Sign Up</a></li>
          <li><a href="{% url 'login' %}">Log In</a></li>
+         {% endif %}
       </ul>
     </main>
-  	<footer class="page-footer">
-       <div class="right">All Rights Reserved, &copy; 2020 Goals! &nbsp;</div>
-    </footer>
 </body>
 </html>
