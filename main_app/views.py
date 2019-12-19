@@ -3,11 +3,15 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+
+
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 import uuid
 import boto3
 from .models import Resolution
+from .forms import CommentForm
 
 # Create your views here.
 def home(request):
@@ -35,6 +39,11 @@ class ResolutionIndex(LoginRequiredMixin, ListView):
 
 class ResolutionDetail(LoginRequiredMixin, DetailView):
   model = Resolution
+  def get_context_data(self, **kwargs):
+    context = super(ResolutionDetail, self).get_context_data(**kwargs)
+    context['comment_form'] = CommentForm()
+    return context
+
 
 class ResolutionCreate(LoginRequiredMixin, CreateView):
    model = Resolution
@@ -51,3 +60,12 @@ class ResolutionUpdate(LoginRequiredMixin, UpdateView):
 class ResolutionDelete(LoginRequiredMixin, DeleteView):
   model = Resolution
   success_url = '/resolutions/'
+
+def add_comment(request, resolution_id):
+  form = CommentForm(request.POST)
+  if form.is_valid():
+    new_comment = form.save(commit=False)
+    new_comment.resolution_id = resolution_id
+    new_comment.user = request.user
+    new_comment.save()
+  return redirect('detail', pk=resolution_id)
