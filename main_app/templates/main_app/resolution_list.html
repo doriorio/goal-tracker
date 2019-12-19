@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1> Resolution List</h1>
+<h1> Resolutions Around the World! </h1>
 
 {% for resolution in resolution_list %}
-  <a href=""></a>
+  <a href="{% url 'detail' resolution.id %}">
     <div class="card">
         <div class="card-content">
             <span class="card-title">{{ resolution.goal }}</span>

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Give Up On Your Resolution</h1>
+
+  <h4>Are you sure you want to quit on this resolution: <span class="teal-text">{{ object.goal }}</span>?</h4>
+
+  <form action="" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Yes, Remain Mediocre" class="btn">
+    <a href="{% url 'detail' object.id %}" class="btn">Cancel, No I want to Keep Trying</a>
+  </form>
+{% endblock %}
