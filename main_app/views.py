@@ -3,14 +3,11 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-
-
-
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 import uuid
 import boto3
-from .models import Resolution
+from .models import Resolution, Comment
 from .forms import CommentForm
 
 # Create your views here.
@@ -69,3 +66,8 @@ def add_comment(request, resolution_id):
     new_comment.user = request.user
     new_comment.save()
   return redirect('detail', pk=resolution_id)
+
+def delete_comment(request, comment_id):
+   comment = Comment.objects.get(id=comment_id)
+   comment.delete()
+   return redirect('detail', comment.resolution_id)
