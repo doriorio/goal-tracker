@@ -28,7 +28,7 @@
             <tr><th>User</th><th>Comment</th></tr>
           </thead>
           <tbody>
-            {% if resolution.comment.count %}  
+            {% if resolution.comment_set.count %}  
                 {% for comment in resolution.comment_set.all %}
                     <tr>
                         <td>{{comment.user}}</td>
@@ -37,7 +37,7 @@
                 {% endfor %}
             {% else %}
                 <h5>No Comments Yet</h5>
-            {% endif %}    
+            {% endif %}
           </tbody>
         </table>
       </div>
