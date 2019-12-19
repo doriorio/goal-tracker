@@ -2,3 +2,62 @@ nav > li {
     background-color: white;
 }
 
+.background {
+   height: 100vh;
+   width: 100vw;
+   background-image: url('../images/night_hill.gif');
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+
+.background > h1 {
+   margin: 0;
+   /* margin-top: 200px;
+   margin-bottom: 150px; */
+}
+
+.background > ul {
+   justify-self: flex-end;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   align-items: center;
+   /* margin-top: 70px; */
+   height: 90px;
+}
+
+.background > ul > li {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   align-content: center;
+}
+
+.background > ul > li > a {
+   color: navy;
+   display: flex;
+   background-color: #B4CBD1;
+   opacity: 0.7;
+   align-items: center;
+   justify-content: center;
+   border-style: solid;
+   border-width: 1px;
+   border-color: black;
+   border-radius: 99999px;
+   width: 200px;
+   height: 40px;
+   padding: 0;
+   margin: 0;
+   text-align: center;
+   transition: transform 0.3s ease, opacity 0.2s ease;
+}
+
+.background > ul > li > a:hover {
+   opacity: 1;
+   transform: scale(1.1);
+}
