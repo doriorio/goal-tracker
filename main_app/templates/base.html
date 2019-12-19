@@ -7,36 +7,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Goals</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/lux/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
 </head>
 <body>
-    <header class="navbar-fixed">
-        <nav>
-            <div class="nav-wrapper">
-                <ul>
-                    <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Goals</a></li>
-                </ul>
-                <ul class="right">
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark" id="header">
+
+                
+                    <button href="/" class="btn btn-warning">&nbsp;&nbsp;Goals</button>
+                
+                <div class="justify-content-end">
                     {% if user.is_authenticated %}
-                    <li><a href="{% url 'index' %}">Community</a></li>
-                    <li><a href="{% url 'create' %}">Make a Resolution</a></li>
-                    <li><a href="{% url 'logout' %}">Log Out</a></li>
+                    <button class="nav-item btn btn-success" href="{% url 'index' %}">Community</button></span>
+                    <button class="nav-item btn btn-info" href="{% url 'create' %}">Make a Resolution</a>
+                    <button class="nav-item btn btn-danger" href="{% url 'logout' %}">Log Out</a>
                     {% else %}
-                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
-                    <li><a href="{% url 'login' %}">Log In</a></li>
+                    <button class="nav-item btn btn-info"" href="{% url 'signup' %}">Sign Up</a>
+                    <button class="nav-item btn btn-info" href="{% url 'login' %}">Log In</a>
                     {% endif %}
-                </ul>
-            </div>
-        </nav>
-    </header>
-    <main class="container">
+                </div>
+
+    </nav>
+    <main class="container p-3">
         {% block content %}
         {% endblock %}
     </main>
-  	<footer class="page-footer">
+    <footer class="footer">
+  	<div class="card-footer text-muted fixed-bottom">
        <div class="right">All Rights Reserved, &copy; 2020 Goals! &nbsp;</div>
+      </div>
     </footer>
 </body>
 </html>
