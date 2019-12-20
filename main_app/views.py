@@ -23,7 +23,7 @@ def signup(request):
     if form.is_valid():
       user = form.save()
       login(request, user)
-      return redirect('home')
+      return redirect('index')
     else:
       error_message = "Invalid sign up - try again"
   form = UserCreationForm()
@@ -58,6 +58,16 @@ class ResolutionDelete(LoginRequiredMixin, DeleteView):
   model = Resolution
   success_url = '/resolutions/'
 
+
+@login_required
+def user_resolutions(request, user_id):
+   resolutions = Resolution.objects.filter(user=request.user)
+   # city_form = CityForm()
+   return render(request, 'resolutions/user_resolutions.html', { 
+      'resolutions': resolutions
+      })
+
+@login_required
 def add_comment(request, resolution_id):
   form = CommentForm(request.POST)
   if form.is_valid():
@@ -67,6 +77,7 @@ def add_comment(request, resolution_id):
     new_comment.save()
   return redirect('detail', pk=resolution_id)
 
+@login_required
 def delete_comment(request, comment_id):
    comment = Comment.objects.get(id=comment_id)
    comment.delete()

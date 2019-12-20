@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1> My Resolutions </h1>
+    {% if resolutions %}
+    {% for resolution in resolutions %}
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ resolution.goal }}</span>
+            <p>Reason: {{resolution.reason}}</p>
+            <p>Time Period: {{resolution.time_period}}</p>
+            <p>Notes: {{resolution.notes}}</p>
+        </div>
+        {% if resolution.user == request.user %} 
+        <div class="card-action">
+           <a href="{% url 'update' resolution.id %}">Edit</a>
+           <a href="{% url 'delete' resolution.id %}">Delete</a>
+        </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+    {% else %}
+    <h3> No Resolutions Added Yet </h3>
+    {% endif %}
+<br>
+
+
+{% endblock %}
