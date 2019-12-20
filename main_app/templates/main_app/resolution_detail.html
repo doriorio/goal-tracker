@@ -2,16 +2,18 @@
 {% block content %}
 <h1> Resolution: {{resolution.goal}} </h1>
 
-    <div class="card">
-        <div class="card-content">
+    <div class="card p-1">
+        <div class="card-body">
             <span class="card-title">{{ resolution.goal }}</span>
             <p>Reason: {{resolution.reason}}</p>
             <p>Time Period: {{resolution.time_period}}</p>
             <p>Notes: {{resolution.notes}}</p>
         </div>
         <div class="card-action">
-           <a href="{% url 'update' resolution.id %}">Edit</a>
-           <a href="{% url 'delete' resolution.id %}">Delete</a>
+          <center>
+           <a class="badge badge-info" href="{% url 'update' resolution.id %}">Edit</a>
+           <a class="badge badge-danger" href="{% url 'delete' resolution.id %}">Delete</a>
+          </center>
         </div>
     </div>
 <br>
@@ -26,12 +28,13 @@
                     <td>{{comment.user}}</td>
                     <td>{{comment.text}}</td>
                     <td>
-                      
+                      {% if comment.user == request.user %}
                       <form action="{% url 'delete_comment' comment.id %}" method="post">
                         {% csrf_token %}
-                        <button class="badge badge-danger">Delete Comment
+                        <button class="badge badge-danger">X
                         </button>
                         </form>
+                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}
