@@ -15,5 +15,6 @@ urlpatterns = [
    path('resolutions/<int:resolution_id>/entries/create/', views.EntryCreate.as_view(), name="entry_create"),
    path('entries/<int:entry_id>/delete_entry/', views.delete_entry, name='delete_entry'),
    path('entries/<int:pk>/update_entry/', views.EntryUpdate.as_view(), name='update_entry'),
+   path('users/<int:user_id>/add_photo/', views.add_photo, name='add_photo'),
    path('accounts/signup/', views.signup, name='signup'),
 ]
