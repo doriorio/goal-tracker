@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import Resolution
-from .models import Comment
+from .models import Resolution, Comment
 
 # Register your models here.
 admin.site.register(Resolution)

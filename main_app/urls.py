@@ -5,6 +5,7 @@ urlpatterns = [
    path('', views.home, name='home'),
    path('resolutions/', views.ResolutionIndex.as_view(), name='index'),
    path('resolutions/<int:pk>', views.ResolutionDetail.as_view(), name='detail'),
+   path('resolutions/<int:pk>', views.ResolutionDetail.as_view(), name='detail'),
    path('resolutions/create/', views.ResolutionCreate.as_view(), name='create'),
    path('resolutions/<int:resolution_id>/add_comment/', views.add_comment, name='add_comment'),
    path('resolutions/<int:comment_id>/delete_comment/', views.delete_comment, name='delete_comment'),
