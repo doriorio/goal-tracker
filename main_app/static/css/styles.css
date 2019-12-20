@@ -138,3 +138,8 @@ nav > li {
     transform: translateY(30vh)
  }
  
+.add-entry {
+   position: absolute;
+   right: 5vw;
+   top: 40vh;
+}

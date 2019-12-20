@@ -3,13 +3,18 @@
 <h1> Resolutions Around the World! </h1>
 
 {% for resolution in resolution_list %}
-  <a href="{% url 'detail' resolution.id %}">
     <div class="card">
+      <a href="{% url 'detail' resolution.id %}">
         <div class="card-content">
             <span class="card-title">{{ resolution.goal }}</span>
         </div>
+      </a>
+      {% if resolution.user == request.user %}  
+      <div class="card-action">
+        <a href="{% url 'entry_index' resolution.id %}"> View Entries </a>
+      </div>
+      {% endif %}
     </div>
-  </a>
   <br>
 {% endfor %}
 
