@@ -1,23 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1> Entries for {{resolution}}! </h1>
+<h1> Entries for <em>{{resolution}}!</em></h1>
 
 {% if resolution.user == request.user %}
 {% if entry_list %}  
 {% for entry in entry_list %}
-    <div class="card">
+    <div class="card p-3">
          <div class="card-content">
                <span class="card-title">{{ entry.resolution.goal }}</span>
                <p>{{entry.week}}</p>
          </div>
-         <div class="card-action">
-            <a href="{% url 'update_entry' entry.id %}">Update Entry</a>
+         <section style="display:flex">
+            <a class="btn btn-info m-3" href="{% url 'update_entry' entry.id %}">Update Entry</a>
             <form action="{% url 'delete_entry' entry.id %}" method="POST">
             {% csrf_token %}
-               <button class="badge badge-danger">X
-               </button>
+               <a class="btn btn-danger m-3">Delete</a>
             </form>
-     </div>
+          </section>
     </div>
   <br>
 {% endfor %}
