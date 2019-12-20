@@ -1,5 +1,1 @@
 # goal-tracker
-
-ohiZt6XWWugdwx1FdOK4SMq9GF783w+uYb1Lg4l3
-
-AKIASUSBOEFHGHW6LGU2
