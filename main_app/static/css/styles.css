@@ -151,3 +151,16 @@ nav > li {
 
 }
 
+#id_text {
+   width: 90%;
+   padding: 10px 20px;
+   margin: 8px 0;
+   box-sizing: border-box;
+   border-radius: 25px;
+}
+
+#comment-table {
+   font-size: 1rem;
+   padding: 5px;
+   margin: 5px;
+}
