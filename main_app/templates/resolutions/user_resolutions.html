@@ -3,19 +3,19 @@
 <h1> My Resolutions </h1>
     {% if resolutions %}
     {% for resolution in resolutions %}
-    
+
     <div class="card">
-        <div class="card-content">
-            <span class="card-title">{{ resolution.goal }}</span>
+        <div class="card-content p-3">
+            <span class="card-title">Goal: {{ resolution.goal }}</span>
             <p>Reason: {{resolution.reason}}</p>
-            <p>Time Period: {{resolution.time_period}}</p>
+            <p><strong>Time Period:</strong> {{resolution.time_period}}</p>
             <p>Notes: {{resolution.notes}}</p>
         </div>
         {% if resolution.user == request.user %} 
         <div class="card-action">
-            <a href="{% url 'entry_index' resolution.id %}"> View Entries </a>
-           <a href="{% url 'update' resolution.id %}">Edit</a>
-           <a href="{% url 'delete' resolution.id %}">Delete</a>
+            <a class="btn btn-info m-3" href="{% url 'entry_index' resolution.id %}"> View Entries </a>
+            <a class="btn btn-primary m-3" href="{% url 'update' resolution.id %}"> Update Resolution </a>
+            <a class="btn btn-danger m-3" href="{% url 'delete' resolution.id %}"> Delete Resolution </a>
         </div>
         {% endif %}
     </div>

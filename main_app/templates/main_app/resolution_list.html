@@ -3,15 +3,15 @@
 <h1> Resolutions Around the World! </h1>
 
 {% for resolution in resolution_list %}
-    <div class="card">
+    <div class="card p-3">
       <a href="{% url 'detail' resolution.id %}">
         <div class="card-content">
-            <span class="card-title">{{ resolution.goal }}</span>
+            <span class="card-title">Goal: {{ resolution.goal }}</span>
         </div>
       </a>
       {% if resolution.user == request.user %}  
       <div class="card-action">
-        <a href="{% url 'entry_index' resolution.id %}"> View Entries </a>
+        <a class="btn btn-primary" href="{% url 'entry_index' resolution.id %}"> View Entries </a>
       </div>
       {% endif %}
     </div>

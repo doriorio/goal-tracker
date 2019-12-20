@@ -143,3 +143,11 @@ nav > li {
    right: 5vw;
    top: 40vh;
 }
+
+.card-title {
+   font-size: 1.5rem;
+   text-transform: uppercase;
+   text-decoration: #353A3F solid underline overline;
+
+}
+

@@ -3,8 +3,8 @@
 <h1> Resolution: {{resolution.goal}} </h1>
 
     <div class="card p-1">
-        <div class="card-body">
-            <span class="card-title">{{ resolution.goal }}</span>
+        <div class="card-body p-3">
+            <span class="card-title">Goal: {{ resolution.goal }}</span>
             <p>Reason: {{resolution.reason}}</p>
             <p>Time Period: {{resolution.time_period}}</p>
             <p>Notes: {{resolution.notes}}</p>
@@ -22,14 +22,16 @@
 <br>
     <table class="striped mp-5">
       <thead>
-        <tr><th>User</th><th>Comment</th></tr>
+        <tr><th>Time</th><th>User</th><th>Comment</th></tr>
       </thead>
       <tbody>
         {% if resolution.comment_set.count %}  
             {% for comment in resolution.comment_set.all %}
                 <tr>
+                  <td>{{comment.created_at}}</td>
                     <td>{{comment.user}}</td>
                     <td>{{comment.text}}</td>
+
                     <td>
                       {% if comment.user == request.user %}
                       <form action="{% url 'delete_comment' comment.id %}" method="post">

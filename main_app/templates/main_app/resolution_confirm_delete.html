@@ -8,6 +8,6 @@
   <form action="" method="POST">
     {% csrf_token %}
     <input type="submit" value="Yes, Remain Mediocre" class="btn">
-    <a href="{% url 'detail' object.id %}" class="btn">Cancel, No I want to Keep Trying</a>
+    <a href="{% url 'detail' object.id %}" class="btn btn-info m-3">Cancel, No I want to Keep Trying</a>
   </form>
 {% endblock %}
