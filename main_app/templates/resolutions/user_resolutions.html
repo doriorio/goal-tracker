@@ -1,11 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1> My Resolutions </h1>
-    {% if resolutions %}
-    {% for resolution in resolutions %}
 
 {% for photo in user.photo_set.all %}
-<img class="responsive-img card-panel" src="{{photo.url}}">
+<img class="responsive-img card-panel" height="300px" src="{{photo.url}}">
+<br>
 {% empty %}
 <div class="card-panel blue-text center-align">No Photo Uploaded</div>
 <form action="{% url 'add_photo' user.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
@@ -14,18 +13,21 @@
     <br><br>
     <input type="submit" class="btn" value="Upload Profile Photo">
 </form>
+
 {% endfor %}
 
 {% if resolutions %}
 {% for resolution in resolutions %}
 
     <div class="card">
-        <div class="card-content p-3">
-            <span class="card-title">Goal: {{ resolution.goal }}</span>
-            <p>Reason: {{resolution.reason}}</p>
-            <p><strong>Time Period:</strong> {{resolution.time_period}}</p>
-            <p>Notes: {{resolution.notes}}</p>
-        </div>
+        <a href="{% url 'detail' resolution.id %}">
+            <div class="card-content p-3">
+                <span class="card-title">Goal: {{ resolution.goal }}</span>
+                <p>Reason: {{resolution.reason}}</p>
+                <p><strong>Time Period:</strong> {{resolution.time_period}}</p>
+                <p>Notes: {{resolution.notes}}</p>
+            </div>
+        </a>
         {% if resolution.user == request.user %} 
         <div class="card-action">
             <a class="btn btn-info m-3" href="{% url 'entry_index' resolution.id %}"> View Entries </a>
@@ -39,6 +41,5 @@
     <h3> No Resolutions Added Yet </h3>
     {% endif %}
 <br>
-
 
 {% endblock %}
