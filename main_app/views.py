@@ -58,6 +58,16 @@ class ResolutionDelete(LoginRequiredMixin, DeleteView):
   model = Resolution
   success_url = '/resolutions/'
 
+
+@login_required
+def my_resolutions(request):
+   resolutions = Resolution.objects.filter(user=request.user)
+   # city_form = CityForm()
+   return render(request, 'resolutions/resolution_user.html', { 
+      'resolutions': resolutions
+      })
+
+@login_required
 def add_comment(request, resolution_id):
   form = CommentForm(request.POST)
   if form.is_valid():
@@ -67,6 +77,7 @@ def add_comment(request, resolution_id):
     new_comment.save()
   return redirect('detail', pk=resolution_id)
 
+@login_required
 def delete_comment(request, comment_id):
    comment = Comment.objects.get(id=comment_id)
    comment.delete()
