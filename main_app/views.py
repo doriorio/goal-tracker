@@ -23,7 +23,7 @@ def signup(request):
     if form.is_valid():
       user = form.save()
       login(request, user)
-      return redirect('home')
+      return redirect('index')
     else:
       error_message = "Invalid sign up - try again"
   form = UserCreationForm()
@@ -60,10 +60,10 @@ class ResolutionDelete(LoginRequiredMixin, DeleteView):
 
 
 @login_required
-def my_resolutions(request):
+def user_resolutions(request, user_id):
    resolutions = Resolution.objects.filter(user=request.user)
    # city_form = CityForm()
-   return render(request, 'resolutions/resolution_user.html', { 
+   return render(request, 'resolutions/user_resolutions.html', { 
       'resolutions': resolutions
       })
 
