@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 import uuid
 import boto3
-from .models import Resolution, Comment, Entry
+from .models import Resolution, Comment, Entry, Photo
 from .forms import CommentForm
 
 # Create your views here.
@@ -109,3 +109,20 @@ def delete_entry(request, entry_id):
    entry = Entry.objects.get(id=entry_id)
    entry.delete()
    return redirect('entry_index', entry.resolution_id)
+
+@login_required
+def add_photo(request, user_id):
+  S3_BASE_URL = 'https://s3-us-west-1.amazonaws.com/'
+  BUCKET = 'goaltracker'
+  photo_file = request.FILES.get('photo-file', None)
+  if photo_file:
+    s3 = boto3.client('s3')
+    key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+    try:
+      s3.upload_fileobj(photo_file, BUCKET, key)
+      url = f'{S3_BASE_URL}{BUCKET}/{key}'
+      photo = Photo(url=url, user_id=user_id)
+      photo.save()
+    except:
+      print('An error occured uploading file to s3')
+  return redirect('user_resolutions', user_id=user_id)
