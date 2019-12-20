@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 import uuid
 import boto3
-from .models import Resolution, Comment
+from .models import Resolution, Comment, Entry
 from .forms import CommentForm
 
 # Create your views here.
@@ -82,3 +82,30 @@ def delete_comment(request, comment_id):
    comment = Comment.objects.get(id=comment_id)
    comment.delete()
    return redirect('detail', comment.resolution_id)
+
+class EntryList(LoginRequiredMixin, ListView):
+   model = Entry
+   fields = '__all__'
+   def get_context_data(self, **kwargs):
+      context = super(EntryList, self).get_context_data(**kwargs)
+      context['entry_list'] = Entry.objects.filter(resolution_id=self.kwargs.get('resolution_id'))
+      context['resolution'] = Resolution.objects.get(id=self.kwargs.get('resolution_id'))
+      return context
+
+class EntryCreate(LoginRequiredMixin, CreateView):
+   model = Entry
+   fields = ['mood', 'week', 'notes', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+   def form_valid(self, form):
+      form.instance.user = self.request.user
+      form.instance.resolution = Resolution.objects.get(id=self.kwargs.get('resolution_id'))
+      return super().form_valid(form)
+
+class EntryUpdate(LoginRequiredMixin, UpdateView):
+   model = Entry
+   fields = ['mood', 'week', 'notes', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+
+@login_required
+def delete_entry(request, entry_id):
+   entry = Entry.objects.get(id=entry_id)
+   entry.delete()
+   return redirect('entry_index', entry.resolution_id)

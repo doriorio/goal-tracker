@@ -3,6 +3,12 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 
 
+MOODS = (
+    ('H', 'Happy'),
+    ('M', 'Meh'),
+    ('S', 'Sad')
+)
+
 # Create your models here.
 class Resolution(models.Model):
     goal = models.CharField(max_length=140)
@@ -28,3 +34,26 @@ class Comment(models.Model):
 
     class Meta:
         ordering = ['-created_at']
+
+class Entry(models.Model):
+        user = models.ForeignKey(User, on_delete=models.CASCADE)
+        resolution = models.ForeignKey(Resolution, on_delete=models.CASCADE)
+        mood = models.CharField(
+            max_length=1,
+            choices=MOODS,
+            default=MOODS[1][0],
+        )
+        created_at = models.DateTimeField(auto_now_add=True)
+        week = models.CharField(max_length=15)
+        notes = models.CharField(max_length=150)
+        Sun = models.BooleanField(default=False)
+        Mon = models.BooleanField(default=False)
+        Tue = models.BooleanField(default=False)
+        Wed = models.BooleanField(default=False)
+        Thu = models.BooleanField(default=False)
+        Fri = models.BooleanField(default=False)
+        Sat = models.BooleanField(default=False)
+        def __str__(self):
+            return self.week
+        def get_absolute_url(self):
+            return reverse('entry_index', kwargs={ 'resolution_id': self.resolution_id })
