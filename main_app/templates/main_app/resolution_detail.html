@@ -12,7 +12,6 @@
         <div class="card-action">
           <center>
             {% if resolution.user == request.user %} 
-
            <a class="badge badge-info" href="{% url 'update' resolution.id %}">Edit</a>
            <a class="badge badge-danger" href="{% url 'delete' resolution.id %}">Delete</a>
            {% endif %}
