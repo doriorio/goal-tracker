@@ -25,7 +25,7 @@ class Resolution(models.Model):
 
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    text = models.CharField(max_length=250)
+    text = models.CharField('comment', max_length=250)
     created_at = models.DateTimeField(auto_now_add=True)
     resolution = models.ForeignKey(Resolution, on_delete=models.CASCADE)
 

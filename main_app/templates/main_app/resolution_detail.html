@@ -1,37 +1,39 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="jumbotron" class="sticky-top" id="header">
+  <h3>Remember your reason for doing this:</h3>
+  <br>
+  <h1>{{resolution.reason}}</h1></div>
 <h1> Resolution: {{resolution.goal}} </h1>
-
     <div class="card p-1">
         <div class="card-body p-3">
             <span class="card-title">Goal: {{ resolution.goal }}</span>
-            <p>Reason: {{resolution.reason}}</p>
             <p>Time Period: {{resolution.time_period}}</p>
             <p>Notes: {{resolution.notes}}</p>
         </div>
         <div class="card-action">
           <center>
             {% if resolution.user == request.user %} 
-           <a class="badge badge-info" href="{% url 'update' resolution.id %}">Edit</a>
-           <a class="badge badge-danger" href="{% url 'delete' resolution.id %}">Delete</a>
+           <a class="btn btn-info m-3" href="{% url 'update' resolution.id %}">Edit</a>
+           <a class="btn btn-danger m-3" href="{% url 'delete' resolution.id %}">Delete</a>
            {% endif %}
           </center>
         </div>
     </div>
 <br>
-    <table class="striped mp-5">
-      <thead>
-        <tr><th>Time</th><th>User</th><th>Comment</th></tr>
+    <table class="table striped mp-5">
+        <tr><th style="font-size:1.2rem">Time</th>
+          <th style="font-size:1.2rem">User</th>
+          <th style="font-size:1.2rem">Comment</th></tr>
       </thead>
-      <tbody>
+      <tbody id="comment-table">
         {% if resolution.comment_set.count %}  
             {% for comment in resolution.comment_set.all %}
-                <tr>
-                  <td>{{comment.created_at}}</td>
-                    <td>{{comment.user}}</td>
-                    <td>{{comment.text}}</td>
-
-                    <td>
+                <tr class="p-1 m-3">
+                  <td class="m-3 p-1">{{comment.created_at}} </td>
+                    <td class="m-3 p-1">{{comment.user}}</td>
+                    <td class="m-3 p-1">{{comment.text}}</td>
+                    <td class="m-3 p-1">
                       {% if comment.user == request.user %}
                       <form action="{% url 'delete_comment' comment.id %}" method="post">
                         {% csrf_token %}
