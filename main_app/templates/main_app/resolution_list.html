@@ -6,6 +6,8 @@
     <div class="card p-3">
       <a href="{% url 'detail' resolution.id %}">
         <div class="card-content">
+            <span class="card-title">User: {{ resolution.user.username }}</span>
+            <br>
             <span class="card-title">Goal: {{ resolution.goal }}</span>
         </div>
       </a>

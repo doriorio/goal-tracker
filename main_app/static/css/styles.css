@@ -164,3 +164,7 @@ nav > li {
    padding: 5px;
    margin: 5px;
 }
+
+.solid {
+   background-color: rgba(0,0,0,0.03);
+}
