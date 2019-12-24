@@ -4,11 +4,21 @@
 
 {% if resolution.user == request.user %}
 {% if entry_list %}  
+{% if entry_list.count == 1 %}
+<h2>There is only {{ entry_list.count }} entry for this goal</h2>
+{% endif %}
+{% if entry_list.count > 1 %}
+<h2>There are {{ entry_list.count }} entries for this goal</h2>
+{% endif %}
+
 {% for entry in entry_list %}
+
+
     <div class="card p-3">
          <div class="card-content">
-               <span class="card-title">{{ entry.resolution.goal }}</span>
+               <span class="card-title">Mood: {{ entry.mood }}</span>
                <p>{{entry.week}}</p>
+               <p>{{entry.notes}}</p>
          </div>
          <section style="display:flex">
             <a class="btn btn-info m-3" href="{% url 'update_entry' entry.id %}">Update Entry</a>
