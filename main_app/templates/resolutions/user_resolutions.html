@@ -11,7 +11,7 @@
     {% csrf_token %}
     <input type="file" name="photo-file">
     <br><br>
-    <input type="submit" class="btn" value="Upload Profile Photo">
+    <input type="submit" class="btn" value="Upload a photo to remind you of your motivation">
 </form>
 
 {% endfor %}
@@ -19,27 +19,32 @@
 {% if resolutions %}
 {% for resolution in resolutions %}
 
-    <div class="card">
-        <a href="{% url 'detail' resolution.id %}">
-            <div class="card-content p-3">
-                <span class="card-title">Goal: {{ resolution.goal }}</span>
-                <p>Reason: {{resolution.reason}}</p>
-                <p><strong>Time Period:</strong> {{resolution.time_period}}</p>
-                <p>Notes: {{resolution.notes}}</p>
-            </div>
-        </a>
-        {% if resolution.user == request.user %} 
-        <div class="card-action">
-            <a class="btn btn-info m-3" href="{% url 'entry_index' resolution.id %}"> View Entries </a>
-            <a class="btn btn-primary m-3" href="{% url 'update' resolution.id %}"> Update Resolution </a>
-            <a class="btn btn-danger m-3" href="{% url 'delete' resolution.id %}"> Delete Resolution </a>
-        </div>
-        {% endif %}
+<div class="card">
+
+    <div class="card-content p-3">
+        <span class="card-title"> <a href="{% url 'detail' resolution.id %}">
+                <i class="material-icons">
+                    pageview
+                </i>
+            </a>Goal: {{ resolution.goal }}</span>
+        <p>Reason: {{resolution.reason}}</p>
+        <p><strong>Time Period:</strong> {{resolution.time_period}}</p>
+        <p>Notes: {{resolution.notes}}</p>
     </div>
-    {% endfor %}
-    {% else %}
-    <h3> No Resolutions Added Yet </h3>
+
+    {% if resolution.user == request.user %}
+    <div class="card-action">
+        <a class="btn btn-info m-3" href="{% url 'entry_index' resolution.id %}"> View Entries </a>
+        <a class="btn btn-success m-3" href="{% url 'entry_create' resolution.id %}">Add An Entry </a>
+        <a class="btn btn-primary m-3" href="{% url 'update' resolution.id %}"> Update Resolution </a>
+        <a class="btn btn-danger m-3" href="{% url 'delete' resolution.id %}"> Delete Resolution </a>
+    </div>
     {% endif %}
+</div>
+{% endfor %}
+{% else %}
+<h3> No Resolutions Added Yet </h3>
+{% endif %}
 <br>
 
 {% endblock %}
