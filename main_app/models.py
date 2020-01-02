@@ -1,12 +1,13 @@
+from datetime import date
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
 
 
 MOODS = (
-    ('H', '😄'),
-    ('M', '😐'),
-    ('S', '😔 ')
+    ('Fantastic', '😄'),
+    ('Meh', '😐'),
+    ('Lamentable', '😔 ')
 )
 
 TIME_PERIOD = (
@@ -55,21 +56,18 @@ class Comment(models.Model):
 class Entry(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     resolution = models.ForeignKey(Resolution, on_delete=models.CASCADE)
-    week = models.CharField(max_length=15)
+    day = models.CharField(
+        default=date.today(),
+        max_length=15
+        )
     mood = models.CharField(
-        max_length=1,
+        max_length=30,
         choices=MOODS,
         default=MOODS[1][0],
     )
     created_at = models.DateTimeField(auto_now_add=True)
-    Mon = models.BooleanField(default=False)
-    Tue = models.BooleanField(default=False)
-    Wed = models.BooleanField(default=False)
-    Thu = models.BooleanField(default=False)
-    Fri = models.BooleanField(default=False)
-    Sat = models.BooleanField(default=False)
-    Sun = models.BooleanField(default=False)
-    notes = models.CharField(max_length=150)
+    done = models.BooleanField(default=False)
+    notes = models.TextField('Entry')
     def __str__(self):
         return self.week
     def get_absolute_url(self):
