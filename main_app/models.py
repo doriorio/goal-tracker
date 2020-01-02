@@ -62,13 +62,13 @@ class Entry(models.Model):
         default=MOODS[1][0],
     )
     created_at = models.DateTimeField(auto_now_add=True)
-    Sun = models.BooleanField(default=False)
     Mon = models.BooleanField(default=False)
     Tue = models.BooleanField(default=False)
     Wed = models.BooleanField(default=False)
     Thu = models.BooleanField(default=False)
     Fri = models.BooleanField(default=False)
     Sat = models.BooleanField(default=False)
+    Sun = models.BooleanField(default=False)
     notes = models.CharField(max_length=150)
     def __str__(self):
         return self.week

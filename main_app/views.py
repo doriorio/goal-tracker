@@ -94,7 +94,7 @@ class EntryList(LoginRequiredMixin, ListView):
 
 class EntryCreate(LoginRequiredMixin, CreateView):
    model = Entry
-   fields = ['mood', 'week', 'notes', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+   fields = ['mood', 'week', 'notes', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
    def form_valid(self, form):
       form.instance.user = self.request.user
       form.instance.resolution = Resolution.objects.get(id=self.kwargs.get('resolution_id'))

@@ -198,3 +198,7 @@ a:hover {
    color: lightblue; 
    text-decoration: none;
 }
+
+.btn-size {
+   width: 220px;
+}
