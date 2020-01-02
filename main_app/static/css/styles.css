@@ -159,6 +159,10 @@ nav > li {
    border-radius: 25px;
 }
 
+#id_text:focus {
+   outline: none;
+}
+
 #comment-table {
    font-size: 1rem;
    padding: 5px;
@@ -167,4 +171,34 @@ nav > li {
 
 .solid {
    background-color: rgba(0,0,0,0.03);
+}
+
+
+table {
+   width: 75%;
+   padding: 5px;
+}
+table input, select {
+   width: 100%;
+   padding: 5px;
+   margin: 10px 5px 5px 5px;
+   font-size: 20px;
+   color: grey;
+}
+table input:focus {
+   outline: none;
+}
+
+table label {
+   font-size: 18px;
+}
+
+a:hover {
+   cursor: cell;
+   color: lightblue; 
+   text-decoration: none;
+}
+
+.btn-size {
+   width: 220px;
 }
