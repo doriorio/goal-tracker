@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
   {% if object %}
     <h1>Edit Entry:<span class="teal-text">{{object.week}}</span></h1>
@@ -15,5 +15,10 @@
       {{ form.as_table }}
     </table>
     <input type="submit" value="Submit" class="btn btn-primary m-3">
+    <a href="{% url 'user_resolutions' request.user.id %}" class="btn btn-danger m-3">Back</a>
   </form>
+  <script>
+    weekEl = document.getElementById('id_week');
+    weekEl.type = 'week';
+  </script>
 {% endblock %}
