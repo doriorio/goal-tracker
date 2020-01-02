@@ -18,6 +18,6 @@
       {{ form.as_table }}
     </table>
     <input type="submit" value="Submit" class="btn btn-info m-3">
-    <a href="{% url 'detail' request.user.id %}" class="btn btn-danger m-3">Back</a>
+    <a href="{% url 'user_resolutions' request.user.id %}" class="btn btn-danger m-3">Back</a>
   </form>
 {% endblock %}
