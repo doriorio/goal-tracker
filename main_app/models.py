@@ -69,7 +69,7 @@ class Entry(models.Model):
     done = models.BooleanField(default=False)
     notes = models.TextField('Entry')
     def __str__(self):
-        return self.week
+        return self.day
     def get_absolute_url(self):
         return reverse('entry_index', kwargs={ 'resolution_id': self.resolution_id })
 

@@ -13,21 +13,26 @@
 
 {% for entry in entry_list %}
 
-    <div class='slider-container'>
-      <div class="card p-3 slider-element">
-          <div class="card-content">
-                <span class="card-title">Mood: {{ entry.mood }}</span>
-                <p>{{entry.week}}</p>
-                <p>{{entry.notes}}</p>
-          </div>
-          <section style="display:flex">
-              <a class="btn btn-info m-3" href="{% url 'update_entry' entry.id %}">Update Entry</a>
-              <form action="{% url 'delete_entry' entry.id %}" method="POST">
-              {% csrf_token %}
-                <a class="btn btn-danger m-3">Delete</a>
-              </form>
-            </section>
-      </div>
+    
+    <div class="card p-3 slider-element">
+         <div class="card-content">
+               <span class="card-title">Mood: {{ entry.mood }}</span>
+               <p>{{entry.day}}</p>
+               <p>{% if entry.done %}
+                 Daily Goal Completed!
+                 {% else %}
+                 Daily Goal Incomplete.
+                {% endif %}
+               </p>
+               <p>{{entry.notes}}</p>
+         </div>
+         <section style="display:flex">
+            <a class="btn btn-info m-3" href="{% url 'update_entry' entry.id %}">Update Entry</a>
+            <form action="{% url 'delete_entry' entry.id %}" method="POST">
+            {% csrf_token %}
+               <a class="btn btn-danger m-3">Delete</a>
+            </form>
+          </section>
     </div>
   <br>
 {% endfor %}
