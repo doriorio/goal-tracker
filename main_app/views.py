@@ -5,6 +5,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django import forms
 import uuid
 import boto3
 from .models import Resolution, Comment, Entry, Photo
@@ -94,7 +95,7 @@ class EntryList(LoginRequiredMixin, ListView):
 
 class EntryCreate(LoginRequiredMixin, CreateView):
    model = Entry
-   fields = ['mood', 'week', 'notes', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+   fields = ['mood', 'day', 'done', 'notes']
    def form_valid(self, form):
       form.instance.user = self.request.user
       form.instance.resolution = Resolution.objects.get(id=self.kwargs.get('resolution_id'))
@@ -102,7 +103,7 @@ class EntryCreate(LoginRequiredMixin, CreateView):
 
 class EntryUpdate(LoginRequiredMixin, UpdateView):
    model = Entry
-   fields = ['mood', 'week', 'notes', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+   fields = ['mood', 'day', 'done', 'notes']
 
 @login_required
 def delete_entry(request, entry_id):

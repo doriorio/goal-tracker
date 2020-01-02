@@ -18,7 +18,7 @@
     <a href="{% url 'user_resolutions' request.user.id %}" class="btn btn-danger m-3">Back</a>
   </form>
   <script>
-    weekEl = document.getElementById('id_week');
-    weekEl.type = 'week';
+    dayEl = document.getElementById('id_day');
+    dayEl.type = 'date';
   </script>
 {% endblock %}

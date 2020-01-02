@@ -193,6 +193,10 @@ table label {
    font-size: 18px;
 }
 
+a {
+   cursor: none,
+}
+
 a:hover {
    cursor: cell;
    color: lightblue; 
